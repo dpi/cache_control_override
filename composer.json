@@ -1,0 +1,14 @@
+{
+  "name": "drupal/cache_control_override",
+  "type": "drupal-module",
+  "description": "Override Cache Control header based on cacheability metadata or other conditions",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/cache_control_override",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/cache_control_override",
+    "source": "http://cgit.drupalcode.org/cache_control_override"
+  },
+  "require": { }
+}

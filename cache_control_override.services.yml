@@ -1,0 +1,6 @@
+services:
+  cache_control_override.finish_response_subscriber:
+    class: Drupal\cache_control_override\EventSubscriber\CacheControlOverrideSubscriber
+    arguments: ['@config.factory']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,5 @@
+name: Cache Control Override
+type: module
+description: Override Cache Control header based on cacheability metadata or other conditions
+core: 8.x
+package: Performance and scalability
