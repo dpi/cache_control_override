@@ -41,6 +41,11 @@ class CacheControlOverrideSubscriber implements EventSubscriberInterface {
       return;
     }
 
+    // If FinishResponseSubscriber didn't set the response as cacheable, then don't override anything.
+    if (!$response->headers->hasCacheControlDirective('max-age') || !$response->headers->hasCacheControlDirective('public')) {
+      return;
+    }
+
     if ($this->configFactory->get('cache_control_override.settings')->get('use_cacheability_metadata')) {
       $max_age = $response->getCacheableMetadata()->getCacheMaxAge();
 
