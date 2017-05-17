@@ -1,7 +1,0 @@
-cache_control_override.settings:
-  path: '/admin/config/development/performance/cache_control_settings'
-  defaults:
-    _form: '\Drupal\cache_control_override\Form\SettingsForm'
-    _title: 'Cache Control Settings'
-  requirements:
-    _permission: 'administer site configuration'

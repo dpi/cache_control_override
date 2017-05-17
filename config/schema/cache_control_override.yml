@@ -1,8 +1,0 @@
-cache_control_override.settings:
-  type: config_object
-  label: 'Cache Control Override Settings'
-  mapping:
-    use_cacheability_metadata:
-      type: boolean
-      label: 'Use cacheability metadata'
-

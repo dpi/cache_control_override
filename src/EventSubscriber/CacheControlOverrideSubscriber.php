@@ -4,23 +4,11 @@ namespace Drupal\cache_control_override\EventSubscriber;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableResponseInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CacheControlOverrideSubscriber implements EventSubscriberInterface {
-
-  protected $configFactory;
-
-  /**
-   * CacheControlOverrideSubscriber constructor.
-   *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
-   */
-  public function __construct(ConfigFactoryInterface $configFactory) {
-    $this->configFactory = $configFactory;
-  }
 
   /**
    * Overrides cache control header if any of override methods are enabled and conditions met.
@@ -46,13 +34,11 @@ class CacheControlOverrideSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    if ($this->configFactory->get('cache_control_override.settings')->get('use_cacheability_metadata')) {
-      $max_age = $response->getCacheableMetadata()->getCacheMaxAge();
+    $max_age = $response->getCacheableMetadata()->getCacheMaxAge();
 
-      // We treat permanent cache max-age as default therefore we don't override the max-age.
-      if ($max_age != Cache::PERMANENT) {
-        $response->headers->set('Cache-Control', 'public, max-age=' . $max_age);
-      }
+    // We treat permanent cache max-age as default therefore we don't override the max-age.
+    if ($max_age != Cache::PERMANENT) {
+      $response->headers->set('Cache-Control', 'public, max-age=' . $max_age);
     }
   }
 
