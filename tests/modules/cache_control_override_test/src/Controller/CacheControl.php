@@ -16,7 +16,7 @@ class CacheControl {
    * Controller callback: Test content with a specified max age.
    *
    * @param int|null $max_age
-   *   Max age value to be used in the response.
+   *   Max-age value to be used in the response, or NULL to not a set max-age.
    *
    * @return array
    *   Render array of page output.
