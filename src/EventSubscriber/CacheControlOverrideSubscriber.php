@@ -61,11 +61,15 @@ class CacheControlOverrideSubscriber implements EventSubscriberInterface {
     // We treat permanent cache max-age as default therefore we don't override
     // the max-age.
     if ($max_age != Cache::PERMANENT) {
+      // If max-age is not uncacheable (0), check if max-age should be changed.
       if ($max_age > 0) {
+        // Force minimum max-age if configured.
         $minimum = $this->getMaxAgeMinimum();
         if (isset($minimum)) {
           $max_age = max($minimum, $max_age);
         }
+
+        // Force maximum max-age if configured.
         $maximum = $this->getMaxAgeMaximum();
         if (isset($maximum)) {
           $max_age = min($maximum, $max_age);
